@@ -1,4 +1,4 @@
-package com.servlet;
+package com.servlet.session;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/MyHttpSessionServlet")
-public class MyHttpSessionServlet extends HttpServlet {
+@WebServlet("/MyHttpSessionServletSet")
+public class MyHttpSessionServletSet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,21 +20,20 @@ public class MyHttpSessionServlet extends HttpServlet {
 
 		// Retrieve the HttpSession object
 		HttpSession session = request.getSession();
+
 		// Use HttpSession methods
 		session.setAttribute("username", "manu");
-
-		String username = (String) session.getAttribute("username");
 
 		PrintWriter out = response.getWriter();
 
 		String output = """
 				<html>
 				    <body>
-				        <h2>MyHttpSessionServlet</h2>
-				        <h3>username = %s</h3>
+				        <h2>MyHttpSessionServletSet</h2>
+				        <p>username attribute added to the session.</p>
 				    </body>
 				</html>
-				     """.formatted(username);
+				     """;
 
 		out.print(output);
 
