@@ -16,15 +16,20 @@ import jakarta.servlet.http.HttpServletResponse;
 public class SecureServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final int MAX_REQUESTS_PER_SECOND = 1;
+	private static final int MAX_REQUESTS_PER_SECOND = 5;
 	private AtomicInteger requestCount = new AtomicInteger(0);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		response.getWriter().append("Served at: ").append(request.getContextPath() + "\n");
+
+		response.getWriter().append("\nrequestCount = " + requestCount + "\n");
+
 		if (requestCount.incrementAndGet() > MAX_REQUESTS_PER_SECOND) {
 
 			response.sendError(HttpServletResponse.SC_REQUESTED_RANGE_NOT_SATISFIABLE, "Too many requests");
+
 			return;
 
 		}
@@ -34,24 +39,25 @@ public class SecureServlet extends HttpServlet {
 		if (StringUtils.isNumeric(param)) {
 
 			int limit = Integer.parseInt(param);
-			
+
 			if (limit > 1000) {
-				
+
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Request limit exceeded");
 				return;
-				
+
 			}
 
 			for (int i = 0; i < limit; i++) {
-				
+
 				response.getWriter().write("Response " + i + "\n");
-				
+
 			}
-			
+
 		} else {
-			
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request");
-			
+
+			// response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request");
+			response.getWriter().write("\nPlease pass the value of param...");
+
 		}
 
 		requestCount.decrementAndGet();
@@ -71,4 +77,5 @@ public class SecureServlet extends HttpServlet {
 			}
 		}).start();
 	}
+	
 }

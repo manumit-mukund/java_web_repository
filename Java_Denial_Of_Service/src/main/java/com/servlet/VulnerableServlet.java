@@ -17,6 +17,8 @@ public class VulnerableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		response.setContentType("text/html");
 
 		String param = request.getParameter("param");
@@ -30,7 +32,7 @@ public class VulnerableServlet extends HttpServlet {
 
 			for (int i = 0; i < Integer.MAX_VALUE; i++) {
 
-				response.getWriter().write("Response " + i + "\\n");
+				response.getWriter().write("Response " + i + "\n");
 
 			}
 		}
