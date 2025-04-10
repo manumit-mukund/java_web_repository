@@ -16,7 +16,9 @@ import jakarta.servlet.http.HttpServletResponse;
 public class SecureServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final int MAX_REQUESTS_PER_SECOND = 5;
+
+	private static final int MAX_REQUESTS_PER_SECOND = 3;
+
 	private AtomicInteger requestCount = new AtomicInteger(0);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -24,11 +26,11 @@ public class SecureServlet extends HttpServlet {
 
 		response.getWriter().append("Served at: ").append(request.getContextPath() + "\n");
 
-		response.getWriter().append("\nrequestCount = " + requestCount + "\n");
+		response.getWriter().append("\nrequestCountHello = " + requestCount.incrementAndGet() + "\n");
 
-		if (requestCount.incrementAndGet() > MAX_REQUESTS_PER_SECOND) {
+		if (requestCount.get() > MAX_REQUESTS_PER_SECOND) {
 
-			response.sendError(HttpServletResponse.SC_REQUESTED_RANGE_NOT_SATISFIABLE, "Too many requests");
+			response.sendError(HttpServletResponse.SC_REQUESTED_RANGE_NOT_SATISFIABLE, "Too many requests ->" + requestCount.get());
 
 			return;
 
@@ -43,6 +45,7 @@ public class SecureServlet extends HttpServlet {
 			if (limit > 1000) {
 
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Request limit exceeded");
+
 				return;
 
 			}
@@ -60,22 +63,31 @@ public class SecureServlet extends HttpServlet {
 
 		}
 
-		requestCount.decrementAndGet();
+		//requestCount.decrementAndGet();
 	}
 
 	@Override
 	public void init() throws ServletException {
+
 		super.init();
+
 		new Thread(() -> {
+
 			while (true) {
+
 				requestCount.set(0);
+
 				try {
-					TimeUnit.SECONDS.sleep(1);
+
+					TimeUnit.SECONDS.sleep(3);
+
 				} catch (InterruptedException e) {
+
 					e.printStackTrace();
+
 				}
 			}
 		}).start();
 	}
-	
+
 }
