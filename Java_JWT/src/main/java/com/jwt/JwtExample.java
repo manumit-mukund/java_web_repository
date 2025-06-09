@@ -38,7 +38,9 @@ public class JwtExample {
 					.withIssuer("auth0")
 					.withSubject("user123") // Subject of the token
 					.withClaim("role", "admin") // Custom claim
-					.withIssuedAt(issuedAt).withExpiresAt(expiresAt).sign(algorithm);
+					.withIssuedAt(issuedAt)
+					.withExpiresAt(expiresAt)
+					.sign(algorithm);
 
 			return token;
 
