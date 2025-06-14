@@ -22,7 +22,6 @@ public class MyHttpSessionServletGet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// Retrieve the username attribute from the session
-
 		String username = (String) session.getAttribute("username");
 
 		PrintWriter out = response.getWriter();
