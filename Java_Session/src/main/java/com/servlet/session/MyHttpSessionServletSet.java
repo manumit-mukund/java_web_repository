@@ -21,8 +21,20 @@ public class MyHttpSessionServletSet extends HttpServlet {
 		// Retrieve the HttpSession object
 		HttpSession session = request.getSession();
 
-		// Use HttpSession methods
-		session.setAttribute("username", "manu");
+		String sessionId = "";
+
+		if (session.isNew()) {
+
+			sessionId = "New session created: " + session.getId();
+
+			// Use HttpSession methods
+			session.setAttribute("username", "manu");
+
+		} else {
+
+			sessionId = "Existing session accessed: " + session.getId();
+
+		}
 
 		PrintWriter out = response.getWriter();
 
@@ -30,10 +42,11 @@ public class MyHttpSessionServletSet extends HttpServlet {
 				<html>
 				    <body>
 				        <h2>MyHttpSessionServletSet</h2>
-				        <p>username attribute added to the session.</p>
-				    </body>
-				</html>
-				     """;
+				        <p>username attribute added to the session</p>""";
+		
+		output += "<p>sessionId = " + sessionId + "<p><br>";
+
+		output += "</body></html>";
 
 		out.print(output);
 
