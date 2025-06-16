@@ -21,7 +21,7 @@ public class MyCookieSessionServletSet extends HttpServlet {
 		Cookie sessionCookie = new Cookie("sessionId", "123456");
 		
 		// Set cookie's max age to 1 minute (60 seconds)
-        sessionCookie.setMaxAge(50);
+        sessionCookie.setMaxAge(60);
 		response.addCookie(sessionCookie);
 
 		PrintWriter out = response.getWriter();

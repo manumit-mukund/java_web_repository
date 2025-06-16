@@ -21,6 +21,13 @@ public class MyHttpSessionServletGet extends HttpServlet {
 		// Retrieve the HttpSession object
 		HttpSession session = request.getSession();
 
+		String sessionId = "";
+
+		if (!session.isNew()) {
+
+			sessionId = "session accessed: " + session.getId();
+		}
+
 		// Retrieve the username attribute from the session
 		String username = (String) session.getAttribute("username");
 
@@ -32,8 +39,10 @@ public class MyHttpSessionServletGet extends HttpServlet {
 				        <h2>MyHttpSessionServletGet</h2>
 				        <h3>username = %s</h3>
 				    </body>
-				</html>
+
 				     """.formatted(username);
+
+		output += "<p>sessionId = " + sessionId + "<p></html>";
 
 		out.print(output);
 
