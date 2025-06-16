@@ -18,8 +18,11 @@ public class MyCookieSessionServletSet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Cookie cookie = new Cookie("sessionId", "123456");
-		response.addCookie(cookie);
+		Cookie sessionCookie = new Cookie("sessionId", "123456");
+		
+		// Set cookie's max age to 1 minute (60 seconds)
+        sessionCookie.setMaxAge(50);
+		response.addCookie(sessionCookie);
 
 		PrintWriter out = response.getWriter();
 

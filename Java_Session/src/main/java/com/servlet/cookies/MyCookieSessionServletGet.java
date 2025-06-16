@@ -20,6 +20,22 @@ public class MyCookieSessionServletGet extends HttpServlet {
 
 		Cookie[] cookies = request.getCookies();
 
+		String sessionId = "No session cookie found.";
+
+		if (cookies != null) {
+
+			for (Cookie cookie : cookies) {
+
+				if ("sessionId".equals(cookie.getName())) {
+
+					sessionId = cookie.getValue();
+
+					break;
+
+				}
+			}
+		}
+
 		PrintWriter out = response.getWriter();
 
 		String output = """
@@ -29,7 +45,7 @@ public class MyCookieSessionServletGet extends HttpServlet {
 				        <h3>sessionId = %s</h3>
 				    </body>
 				</html>
-				     """.formatted(cookies[0].getValue());
+				     """.formatted(sessionId);
 
 		out.print(output);
 
