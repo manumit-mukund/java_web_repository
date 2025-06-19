@@ -22,6 +22,7 @@ public class MyHttpSessionServletSet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String sessionId = "sessionId not found";
+		String username = "username not found";
 
 		if (session.isNew()) {
 
@@ -29,10 +30,12 @@ public class MyHttpSessionServletSet extends HttpServlet {
 
 			// Use HttpSession methods
 			session.setAttribute("username", "manu");
+			username = (String) session.getAttribute("username");
 
 		} else {
 
 			sessionId = "Existing session accessed: " + session.getId();
+			username = (String) session.getAttribute("username");
 
 		}
 
@@ -43,8 +46,8 @@ public class MyHttpSessionServletSet extends HttpServlet {
 				    <body>
 				        <h2>MyHttpSessionServletSet</h2>
 				        <p>username attribute added to the session</p>""";
-		
-		output += "<p>sessionId = " + sessionId + "<p><br>";
+
+		output += "<p>sessionId = " + sessionId + " and username = " + username + "<p><br>";
 
 		output += "</body></html>";
 

@@ -19,17 +19,19 @@ public class MyHttpSessionServletGet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// Retrieve the HttpSession object
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false); // Use false to avoid creating a new session if it doesn't
+															// exist);
 
 		String sessionId = "sessionId not found";
+		String username = "username not found";
 
-		if (!session.isNew()) {
+		if (session != null) {
 
 			sessionId = "session accessed: " + session.getId();
-		}
 
-		// Retrieve the username attribute from the session
-		String username = (String) session.getAttribute("username");
+			// Retrieve the username attribute from the session
+			username = (String) session.getAttribute("username");
+		}
 
 		PrintWriter out = response.getWriter();
 
