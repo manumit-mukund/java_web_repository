@@ -19,21 +19,28 @@ public class MyHttpSessionServleInvalidate extends HttpServlet {
 			throws ServletException, IOException {
 
 		// Retrieve the HttpSession object
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false); // Use false to avoid creating a new session if it doesn't
+															// exist);
 
 		// Invalidate the session
-		session.invalidate();
+
+		String output = "session not found";
+
+		if (session != null) {
+
+			session.invalidate();
+
+			output = """
+					<html>
+					    <body>
+					        <h2>MyHttpSessionServleInvalidate</h2>
+					        <p>The session has been invalidated.</p>
+					    </body>
+					</html>
+					     """;
+		}
 
 		PrintWriter out = response.getWriter();
-
-		String output = """
-				<html>
-				    <body>
-				        <h2>MyHttpSessionServleInvalidate</h2>
-				        <p>username attribute removed from the session.</p>
-				    </body>
-				</html>
-				     """;
 
 		out.print(output);
 

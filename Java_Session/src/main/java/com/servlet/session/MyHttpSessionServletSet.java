@@ -21,8 +21,8 @@ public class MyHttpSessionServletSet extends HttpServlet {
 		// Retrieve the HttpSession object
 		HttpSession session = request.getSession();
 
-		String sessionId = "sessionId not found";
-		String username = "username not found";
+		String sessionId = "";
+		String username = "";
 
 		if (session.isNew()) {
 
