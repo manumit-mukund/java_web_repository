@@ -22,20 +22,29 @@ public class MyHttpSessionServletSet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String sessionId = "";
-		String username = "";
+		String username1 = "";
+		String username2 = "";
+		String username3 = "";
 
 		if (session.isNew()) {
 
 			sessionId = "New session created: " + session.getId();
 
 			// Use HttpSession methods
-			session.setAttribute("username", "manu");
-			username = (String) session.getAttribute("username");
+			session.setAttribute("username1", "manu1");
+			session.setAttribute("username2", "manu2");
+			session.setAttribute("username3", "manu3");
+
+			username1 = (String) session.getAttribute("username1");
+			username2 = (String) session.getAttribute("username2");
+			username3 = (String) session.getAttribute("username3");
 
 		} else {
 
 			sessionId = "Existing session accessed: " + session.getId();
-			username = (String) session.getAttribute("username");
+			username1 = (String) session.getAttribute("username1");
+			username2 = (String) session.getAttribute("username2");
+			username3 = (String) session.getAttribute("username3");
 
 		}
 
@@ -47,7 +56,11 @@ public class MyHttpSessionServletSet extends HttpServlet {
 				        <h2>MyHttpSessionServletSet</h2>
 				        <p>username attribute added to the session</p>""";
 
-		output += "<p>sessionId = " + sessionId + " and username = " + username + "<p><br>";
+		output += "<p>sessionId = " + sessionId + "</p>";
+
+		output += "<p>username1 = " + username1 + "</p>";
+		output += "<p>username2 = " + username2 + "</p>";
+		output += "<p>username3 = " + username3 + "</p>";
 
 		output += "</body></html>";
 

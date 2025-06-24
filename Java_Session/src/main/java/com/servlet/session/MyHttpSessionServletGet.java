@@ -23,28 +23,42 @@ public class MyHttpSessionServletGet extends HttpServlet {
 															// exist);
 
 		String sessionId = "sessionId not found";
-		String username = "username not found";
+		String username1 = "username1 not found";
+		String username2 = "username2 not found";
+		String username3 = "username3 not found";
 
 		if (session != null) {
 
 			sessionId = "session accessed: " + session.getId();
 
 			// Retrieve the username attribute from the session
-			username = (String) session.getAttribute("username");
+			username1 = (String) session.getAttribute("username1");
+			username2 = (String) session.getAttribute("username2");
+			username3 = (String) session.getAttribute("username3");
 		}
 
 		PrintWriter out = response.getWriter();
 
+//		String output = """
+//				<html>
+//				    <body>
+//				        <h2>MyHttpSessionServletGet</h2>
+//				        <h3>username = %s</h3>
+//				    </body>
+//
+//				     """.formatted(username);
+
 		String output = """
 				<html>
 				    <body>
-				        <h2>MyHttpSessionServletGet</h2>
-				        <h3>username = %s</h3>
-				    </body>
+				        <h2>MyHttpSessionServletSet</h2>
+				        <p>username attribute added to the session</p>""";
 
-				     """.formatted(username);
+		output += "<p>sessionId = " + sessionId + "</p>";
 
-		output += "<p>sessionId = " + sessionId + "<p></html>";
+		output += "<p>username1 = " + username1 + "</p>";
+		output += "<p>username2 = " + username2 + "</p>";
+		output += "<p>username3 = " + username3 + "</p>";
 
 		out.print(output);
 
