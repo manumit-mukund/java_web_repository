@@ -2,6 +2,10 @@ package com.servlet.cookies;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,19 +24,38 @@ public class MyCookieSessionServletGet extends HttpServlet {
 
 		Cookie[] cookies = request.getCookies();
 
-		String sessionId = "No session cookie found.";
+		List<String> cookieList = new ArrayList<>();
+
+//		Code for a single cookie	
+//		String sessionId = "No session cookie found.";
+//		if (cookies != null) {
+//
+//			for (Cookie cookie : cookies) {
+//
+//				if ("sessionId".equals(cookie.getName())) {
+//
+//					sessionId = cookie.getValue();
+//
+//					break;
+//
+//				}
+//			}
+//		}
+//
+//		String output = """
+//		<html>
+//		    <body>
+//		        <h2>MyCookieSessionServletGet</h2>
+//		        <h3>sessionId = %s</h3>
+//		    </body>
+//		</html>
+//		     """.formatted(sessionId);
 
 		if (cookies != null) {
 
 			for (Cookie cookie : cookies) {
 
-				if ("sessionId".equals(cookie.getName())) {
-
-					sessionId = cookie.getValue();
-
-					break;
-
-				}
+				cookieList.add(cookie.getValue());
 			}
 		}
 
@@ -42,10 +65,12 @@ public class MyCookieSessionServletGet extends HttpServlet {
 				<html>
 				    <body>
 				        <h2>MyCookieSessionServletGet</h2>
-				        <h3>sessionId = %s</h3>
+				        <h3>cookies = </h3>
 				    </body>
 				</html>
-				     """.formatted(sessionId);
+				     """;
+
+		output += cookieList.toString();
 
 		out.print(output);
 
