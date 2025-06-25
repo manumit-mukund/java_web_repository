@@ -42,6 +42,7 @@ public class MyHttpSessionServletSet extends HttpServlet {
 		} else {
 
 			sessionId = "Existing session accessed: " + session.getId();
+			
 			username1 = (String) session.getAttribute("username1");
 			username2 = (String) session.getAttribute("username2");
 			username3 = (String) session.getAttribute("username3");
