@@ -22,12 +22,11 @@ public class MyHttpSessionServleInvalidate extends HttpServlet {
 		HttpSession session = request.getSession(false); // Use false to avoid creating a new session if it doesn't
 															// exist);
 
-		// Invalidate the session
-
 		String output = "session not found";
 
 		if (session != null) {
 
+			// Invalidate the session
 			session.invalidate();
 
 			output = """
