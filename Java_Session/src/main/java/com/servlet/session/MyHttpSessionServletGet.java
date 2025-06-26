@@ -39,20 +39,11 @@ public class MyHttpSessionServletGet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-//		String output = """
-//				<html>
-//				    <body>
-//				        <h2>MyHttpSessionServletGet</h2>
-//				        <h3>username = %s</h3>
-//				    </body>
-//
-//				     """.formatted(username);
-
 		String output = """
 				<html>
 				    <body>
 				        <h2>MyHttpSessionServletSet</h2>
-				        <p>username attribute added to the session</p>
+				        <p>username attribute accessed from the session</p>
 				        """;
 
 		output += "<p>sessionId = " + sessionId + "</p>";
@@ -65,4 +56,14 @@ public class MyHttpSessionServletGet extends HttpServlet {
 		out.print(output);
 
 	}
+
+//	Syntax for formatted strings in Java 15 and later:
+//	String output = """
+//	<html>
+//	    <body>
+//	        <h2>MyHttpSessionServletGet</h2>
+//	        <h3>username = %s</h3>
+//	    </body>
+//
+//	     """.formatted(username);
 }
