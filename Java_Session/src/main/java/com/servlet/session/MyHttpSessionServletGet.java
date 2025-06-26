@@ -52,13 +52,15 @@ public class MyHttpSessionServletGet extends HttpServlet {
 				<html>
 				    <body>
 				        <h2>MyHttpSessionServletSet</h2>
-				        <p>username attribute added to the session</p>""";
+				        <p>username attribute added to the session</p>
+				        """;
 
 		output += "<p>sessionId = " + sessionId + "</p>";
 
 		output += "<p>username1 = " + username1 + "</p>";
 		output += "<p>username2 = " + username2 + "</p>";
 		output += "<p>username3 = " + username3 + "</p>";
+		output += "</body></html>";
 
 		out.print(output);
 
