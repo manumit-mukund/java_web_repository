@@ -8,7 +8,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 
 public class JwtCreateToken {
-	
+
 	private static final String SECRET_KEY = "manu"; // Keep this secure!
 
 	public static String createJwtToken() {
