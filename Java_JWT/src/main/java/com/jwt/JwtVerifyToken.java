@@ -21,12 +21,12 @@ public class JwtVerifyToken {
 					.withIssuer("auth0")
 					.build(); // Reusable verifier instance
 
-			DecodedJWT jwt = verifier.verify(token);
+			DecodedJWT decodedJWT = verifier.verify(token);
 
 			System.out.println("\nJWT Verified Successfully!");
-			System.out.println("\nSubject: " + jwt.getSubject());
-			System.out.println("\nRole: " + jwt.getClaim("role").asString());
-			System.out.println("\nExpires At: " + jwt.getExpiresAt());
+			System.out.println("\nSubject: " + decodedJWT.getSubject());
+			System.out.println("\nRole: " + decodedJWT.getClaim("role").asString());
+			System.out.println("\nExpires At: " + decodedJWT.getExpiresAt());
 
 		} catch (JWTVerificationException exception) {
 
