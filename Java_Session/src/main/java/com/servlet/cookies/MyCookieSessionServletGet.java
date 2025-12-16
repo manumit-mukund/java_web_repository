@@ -3,8 +3,6 @@ package com.servlet.cookies;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
