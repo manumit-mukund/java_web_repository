@@ -20,9 +20,41 @@ public class MyCookieSessionServletGet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		PrintWriter out = response.getWriter();
+
+		String output = """
+				<html>
+				    <body>
+				        <h2>MyCookieSessionServletGet</h2>
+				        <h3>No cookies found</h3>
+				    </body>
+				</html>
+				     """;
+
 		Cookie[] cookies = request.getCookies();
 
 		List<String> cookieList = new ArrayList<>();
+
+		if (cookies != null) {
+
+			for (Cookie cookie : cookies) {
+
+				cookieList.add(cookie.getValue());
+			}
+
+			output = """
+					<html>
+					    <body>
+					        <h2>MyCookieSessionServletGet</h2>
+					        <h3>cookies = </h3>
+					    </body>
+					</html>
+					     """;
+
+			output += cookieList.toString();
+		}
+
+		out.print(output);
 
 //		Code for a single cookie	
 //		String sessionId = "No session cookie found.";
@@ -48,29 +80,6 @@ public class MyCookieSessionServletGet extends HttpServlet {
 //		    </body>
 //		</html>
 //		     """.formatted(sessionId);
-
-		if (cookies != null) {
-
-			for (Cookie cookie : cookies) {
-
-				cookieList.add(cookie.getValue());
-			}
-		}
-
-		PrintWriter out = response.getWriter();
-
-		String output = """
-				<html>
-				    <body>
-				        <h2>MyCookieSessionServletGet</h2>
-				        <h3>cookies = </h3>
-				    </body>
-				</html>
-				     """;
-
-		output += cookieList.toString();
-
-		out.print(output);
 
 	}
 }
