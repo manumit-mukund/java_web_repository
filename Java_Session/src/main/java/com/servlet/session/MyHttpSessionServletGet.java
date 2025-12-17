@@ -29,7 +29,7 @@ public class MyHttpSessionServletGet extends HttpServlet {
 
 		if (session != null) {
 
-			sessionId = "session accessed: " + session.getId();
+			sessionId = session.getId();
 
 			// Retrieve the username attribute from the session
 			username1 = (String) session.getAttribute("username1");
@@ -43,7 +43,6 @@ public class MyHttpSessionServletGet extends HttpServlet {
 				<html>
 				    <body>
 				        <h2>MyHttpSessionServletSet</h2>
-				        <p>username attribute accessed from the session</p>
 				        """;
 
 		output += "<p>sessionId = " + sessionId + "</p>";

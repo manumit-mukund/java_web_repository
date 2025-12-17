@@ -20,7 +20,14 @@ public class MyCookieSessionServletInvalidateGet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		String output = "";
+		String output = """
+					<html>
+				    <body>
+				        <h2>MyCookieSessionServletInvalidateGet</h2>
+				        <h3>No cookies found to invalidate</h3>
+				    </body>
+				</html>
+				     """;
 
 		Cookie[] cookies = request.getCookies();
 
@@ -42,23 +49,9 @@ public class MyCookieSessionServletInvalidateGet extends HttpServlet {
 					    </body>
 					</html>
 					     """;
-
-			out.print(output);
-
-		} else {
-
-			output = """
-					<html>
-					    <body>
-					        <h2>MyCookieSessionServletInvalidateGet</h2>
-					        <h3>No cookies found to invalidate</h3>
-					    </body>
-					</html>
-					     """;
-
-			out.print(output);
-
 		}
+
+		out.print(output);
 
 	}
 }
