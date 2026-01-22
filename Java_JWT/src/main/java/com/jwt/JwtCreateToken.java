@@ -29,6 +29,8 @@ public class JwtCreateToken {
 					.withExpiresAt(expiresAt)
 					.sign(algorithm);
 			
+			System.out.println("JWT created Successfully!\n");
+			
 			//ISc-IES: Just to memorize the above sequence
 
 			return token;
