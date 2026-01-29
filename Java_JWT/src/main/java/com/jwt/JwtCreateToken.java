@@ -16,6 +16,7 @@ public class JwtCreateToken {
 		try {
 
 			Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+
 			Date issuedAt = new Date();
 			Date expiresAt = new Date(issuedAt.getTime() + TimeUnit.MINUTES.toMillis(30)); // Token expires in 30
 																							// minutes
@@ -28,10 +29,10 @@ public class JwtCreateToken {
 					.withIssuedAt(issuedAt)
 					.withExpiresAt(expiresAt)
 					.sign(algorithm);
-			
+
 			System.out.println("JWT created Successfully!\n");
-			
-			//ISc-IES: Just to memorize the above sequence
+
+			// ISc-IES: Just to memorize the above sequence
 
 			return token;
 
